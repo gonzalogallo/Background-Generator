@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>DOM Selectors</title>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<a href="index.html">Inicio</a>
+	<h1>DOM Selectors</h1>
+	<h2>Antiguos</h2>
+	<h3>getElementsByTagName</h3>
+	<h3>getElementsByClassName</h3>
+	<h3>getElementById</h3>
+	<p>Uso: document.getElementsByTagName("h1");  -> selecciona los tags "h1", no hace nada con esos tags, Clases o ID, simplemente los selecciona.</p>
+	<p>Adicionalmente, getElementById es el único que trae el resultado de lo que figure en el ID, porque es único.</p>
+	<div class="centro">
+		<p> por ejemplo: document.getElementById("first"); dará como resultado...</p>
+		<p> < p id="first">Get it done today < / p> </p>
+		<br>	
+		<p>En cambio en getElementByTagName o getElementByClassName debe agregarse cuál de los elementos del objeto voy a traer, si es que además de seleccionarlo, quiro conocer el resultado de lo que existe en un determinado elemento del array que resulta de las diferentes instancias de un TAG o una Clase, para ello la forma de elegir el primer elemento de un Tag o una Clase es</p>
+
+		<p>document.getElemenByTagname("h1")[0]</p>
+		<p>ó</p>
+		<p>document.getElemenByTagname("h1")[1]</p>
+		<p>ó, generalizando</p>
+		<p>document.getElemenByTagname("h1")[n]</p>
+	</div>
+	<br>
+	<h2>Nuevos, recomendados a utilizar</h2>
+	<h3>querySelector</h3>
+	<p>Uso: document.querySelector("h1") -> selecciona el primero de los tags "h1"</p>
+	<p>querySelector toma sólo el primero de los items que encuentra</p>
+	<p class="centro"> por ejemplo: document.querySelector("h1"); dará como resultado...</p>
+		<p class="centro"><- < h1>Shopping List < /h1> </p>
+		<br>	
+	<h3>querySelectorAll</h3>
+	<p>querySelectorAll toma todos los elementos seleccionados del Tag o la Clase o Id (que siempre es solo uno)</p>
+	<p>Uso: document.querySelectorAll("li") -> selecciona todos los tags "li"</p>
+	<p>Uso: para poder obtener/cambiar un atributo, primero hay que seleccionar el o los elementos del cual se van a obtener/cambiar los atributos, por eso no se escribe</p>
+
+	<h3>getAttribute</h3>
+	<h3>setAttribute</h3>
+	<p>Sirve para obtener un atributo (getAttribute) o para cambiar un atributo (setAttribute)</p>
+	<p>Uso: para poder obtener/cambiar un atributo, primero hay que seleccionar el o los elementos del cual se van a obtener/cambiar los atributos, por eso no se escribe</p>
+	<p class="centro"> document.getAttribute..... sino  >document.querySelector("li").getAttribute("random"); -> y trae el atributo random del primer elemento de "li"</p>
+	<p class="centro"><-"23"</p>
+	<p class="centro"> para cambiar un atributo  document.querySelector("li").setAttribute("random", "1000"); -> y cambiará el atributo random a 1000</p>
+	<p class="centro"><- undefined</p>
+	<p class="centro"> Pero ahora si consultamos el atributo 'random' (que no significa nada, ya lo verifiqué) dirá</p>
+	<p class="centro"> >document.querySelector("li")</p>
+	<p class="centro"><-< li random="1000>Notebook< /li>"</p>
+	
+	<br>
+	<h2> Changing Styles</h2>
+	<h3>style.{property}</h3>
+		<p class="centro">Uso: para poder cambiar un estilo, primero debo elegir qué elemento cambiar su estilo, luego elegir qué parte del estilo quiero cambiar, se hace así:</p>
+	<p class="centro"> document.querySelector("h1").style.background = "yellow"; </p>
+	<p class="centro"> Como querySelector toma el primero de los h1 (en este caso), no hay confusiones, sino debería decirle cuál de todos tomar</p>
+	<p class="centro"><- "yellow"</p>
+	<p class="centro">Si quiero cambiar el estilo de un tag que tiene múltiples instancias (o una clase), se hace así:</p>
+	<p class="centro"> document.querySelectorAll("li")[3].style.background = "yellow";  si quiero seleccionar una clase la sintaxis es document.querySelectorAll(".centro")[3].style.background = "yellow";</p>
+	<p>Si quiero hacerlo con un ID, como son únicos debo usar document.querySelector("#primero").style.background = "yellow";   (sin "All")</p>
+	<p class="centro"> Como querySelectorAll toma todas las instancias, el "style" debe saber a cual de las instancias aplicarlo, de otro modo no las va a plicar a todas sino que va a dar un error, por eso debe agregarse el número de instancia dentro del array de todos los "li"</p>
+	<p class="centro"><- "yellow"</p>
+
+	<br>
+	<h3>className</h3>
+	<p>className es una forma de usar el querySelector para definir un cambio de clase, por ejemplo </p>
+	<p class="centro">document.querySelector("h1").className = "coolTitle"</p>
+	<p> También podría haber usado getElementByTagName </p>
+	<h3>classList</h3>
+	<p>classList es mucho más poderoso, usa el querySelector saber qué clases tiene un objeto, y con los métodos ".add", ".remove" y ".toggle", permitirá agregar, remover y prender y apagar clases, ejemplo de classList</p>
+	<p class="centro">document.querySelector("h1").classList</p>
+	<p class="centro">dará como resultado la/s clase/s que contenga el objeto</p>
+	<p class="centro">por ejemplo:      >2 ["bold", "red", value:"bold red"] si tuviese las clases "bold" y "red"</p>
+	<p>classList tiene tres propiedades</p>
+	<h3>classList.add</h3>
+	<h3>classList.remove</h3>
+	<h3>classList.toggle</h3>
+	<p> aquí es donde se pone más interesante...</p>
+	<p class="centro">document.querySelector("li").classList.add("coolTitle") agrega la clase "coolTitle" al primer objeto de "li"</p>
+	<p class="centro">document.querySelector("li").classList.remove("coolTitle") lo quitará</p>
+	<p class="centro">finalmente  document.querySelector("li").classList.toggle("coolTitle") lo agregará si no está, y lo quitará si está</p>
+	<p>¿No es maravilloso?</p>
+	<h3>#Bonus</h3>
+	<p>innerHTML //DANGEROUS</p>
+	<p>cambia el contenido de un Tag por lo que le pongas, más que peligroso es berreta, porque saca el dato existente en HTML y lo reemplaza por otro que desaparece hasta que no volvés a cargar la página</p>
+	<p>sintaxis: document.querySelector("h1").innerHTML = "Ohhhh!!! estoy cambiando el fucking HTML";</p>
+	<h3>parentElement</h3>
+	<p>document.querySelectroAll("li")[1].parentElement; da como resultado haber seleccionado al objeto padre, puedo encadenar parentElement tantas veces como quiera, obteniendo el padre, del padre, del padre si fuese necesario</p>
+	<h3>children</h3>
+	<p>document.querySelectroAll("li")[1].children; da como resultado haber seleccionado al objeto hijo. Puedo encadenar parentElement y children tantas veces como quiera, obteniendo el padre, del padre, del padre si fuese necesario</p>
+	<p>document.querySelectroAll("li")[1].parentElement.parentElement.children; da como resultado el elemento hijo del padre del padre...</p>
+	<h2>##It is important to CACHE selectors in variables</h2>
+</body>
+</html>
